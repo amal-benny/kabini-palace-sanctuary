@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { Button } from './ui/button';
@@ -13,15 +13,25 @@ import {
   Clock,
   Car,
   Plane,
-  Send
+  Send,
+  CheckCircle
 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 const ContactSection = () => {
   const ref = useRef(null);
+  const containerRef = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+  
+  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
   const contactInfo = [
     {
@@ -70,20 +80,38 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-gradient-forest relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 opacity-10">
+    <section id="contact" ref={containerRef} className="py-24 bg-gradient-to-br from-forest-deep via-forest-medium to-forest-deep relative overflow-hidden">
+      {/* Enhanced Background Elements */}
+      <motion.div 
+        style={{ y, opacity }}
+        className="absolute inset-0"
+      >
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(139,197,63,0.1)_0%,transparent_50%)]" />
         <motion.div
-          animate={{ y: [0, -20, 0] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-20 left-20 w-32 h-32 rounded-full border border-cream"
+          animate={{ 
+            scale: [1, 1.2, 1],
+            rotate: [0, 180, 360]
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          className="absolute top-20 left-20 w-32 h-32 rounded-full border border-sunset/20"
         />
         <motion.div
-          animate={{ y: [0, 20, 0] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-20 right-20 w-24 h-24 rounded-full border border-sunset"
+          animate={{ 
+            scale: [1.2, 1, 1.2],
+            rotate: [360, 180, 0]
+          }}
+          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+          className="absolute bottom-20 right-20 w-24 h-24 rounded-full border border-cream/20"
         />
-      </div>
+        <motion.div
+          animate={{ 
+            y: [0, -30, 0],
+            x: [0, 20, 0]
+          }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/2 left-1/2 w-16 h-16 rounded-full bg-gradient-to-r from-sunset/10 to-river/10"
+        />
+      </motion.div>
 
       <div className="container mx-auto px-6 relative z-10" ref={ref}>
         {/* Section Header */}
@@ -122,44 +150,48 @@ const ContactSection = () => {
           </motion.p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-16">
+        <div className="grid lg:grid-cols-5 gap-12">
           {/* Contact Information */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="space-y-8"
+            className="lg:col-span-2 space-y-6"
           >
             {/* Contact Cards */}
-            <div className="grid gap-6">
+            <div className="grid gap-4">
               {contactInfo.map((info, index) => (
                 <motion.div
                   key={info.title}
                   initial={{ opacity: 0, y: 30 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
+                  transition={{ 
+                    duration: 0.6, 
+                    delay: 0.6 + index * 0.1,
+                    type: "spring",
+                    stiffness: 100
+                  }}
+                  whileHover={{ scale: 1.02 }}
+                  className="group"
                 >
-                  <Card className="bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/20 transition-all duration-300">
-                    <CardContent className="p-6">
-                      <div className="flex items-start space-x-4">
-                        <div className={`p-3 rounded-full bg-white/20 ${info.color}`}>
-                          <info.icon className="w-6 h-6" />
-                        </div>
+                  <Card className="bg-white/5 backdrop-blur-xl border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-500 group-hover:shadow-xl group-hover:shadow-sunset/10">
+                    <CardContent className="p-5">
+                      <div className="flex items-center space-x-4">
+                        <motion.div 
+                          className={`p-3 rounded-xl bg-gradient-to-br from-white/20 to-white/5 ${info.color} group-hover:scale-110 transition-transform duration-300`}
+                          whileHover={{ rotate: 5 }}
+                        >
+                          <info.icon className="w-5 h-5" />
+                        </motion.div>
                         <div className="flex-1">
-                          <h4 className="text-lg font-semibold text-cream mb-2">
+                          <h4 className="font-semibold text-cream mb-1 group-hover:text-sunset transition-colors duration-300">
                             {info.title}
                           </h4>
                           {info.details.map((detail, idx) => (
-                            <p key={idx} className="text-cream/80 text-sm mb-1">
+                            <p key={idx} className="text-cream/70 text-sm leading-relaxed">
                               {detail}
                             </p>
                           ))}
-                          <Button
-                            variant="link"
-                            className="text-sunset hover:text-sunset/80 p-0 h-auto mt-2"
-                          >
-                            {info.action} →
-                          </Button>
                         </div>
                       </div>
                     </CardContent>
@@ -213,10 +245,22 @@ const ContactSection = () => {
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.7 }}
+            transition={{ duration: 0.8, delay: 0.7, type: "spring", stiffness: 80 }}
+            className="lg:col-span-3"
           >
-            <Card className="bg-white/10 backdrop-blur-md border-white/20">
+            <Card className="bg-white/5 backdrop-blur-2xl border-white/10 hover:bg-white/10 transition-all duration-500 shadow-2xl">
               <CardContent className="p-8">
+                <div className="flex items-center space-x-3 mb-8">
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 1, type: "spring" }}
+                    className="p-2 rounded-lg bg-gradient-to-br from-sunset to-sunset/80"
+                  >
+                    <Send className="w-5 h-5 text-forest-deep" />
+                  </motion.div>
+                  <h3 className="text-xl font-serif font-bold text-cream">Send us a Message</h3>
+                </div>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
@@ -297,20 +341,36 @@ const ContactSection = () => {
                     />
                   </div>
 
-                  <Button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full bg-sunset text-forest-deep hover:bg-sunset/90 font-semibold py-6 text-lg"
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                   >
-                    {isSubmitting ? (
-                      "Sending..."
-                    ) : (
-                      <>
-                        <Send className="w-5 h-5 mr-2" />
-                        Send Message
-                      </>
-                    )}
-                  </Button>
+                    <Button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full bg-gradient-to-r from-sunset to-sunset/90 text-forest-deep hover:from-sunset/90 hover:to-sunset font-semibold py-6 text-lg shadow-lg hover:shadow-sunset/25 transition-all duration-300"
+                    >
+                      {isSubmitting ? (
+                        <motion.div
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          className="flex items-center"
+                        >
+                          <motion.div
+                            animate={{ rotate: 360 }}
+                            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                            className="w-5 h-5 border-2 border-forest-deep border-t-transparent rounded-full mr-2"
+                          />
+                          Sending...
+                        </motion.div>
+                      ) : (
+                        <>
+                          <Send className="w-5 h-5 mr-2" />
+                          Send Message
+                        </>
+                      )}
+                    </Button>
+                  </motion.div>
                 </form>
               </CardContent>
             </Card>
