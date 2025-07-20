@@ -119,39 +119,61 @@ const TestimonialsSection = () => {
   };
 
   return (
-    <section id="testimonials" ref={containerRef} className="py-24 bg-gradient-to-br from-cream via-cream/95 to-earth-light relative overflow-hidden">
-      {/* Enhanced Background Decorations */}
+    <section id="testimonials" ref={containerRef} className="py-24 bg-gradient-to-br from-cream/95 via-earth-light/90 to-cream/95 relative overflow-hidden">
+      {/* Nature-inspired Background with Glassmorphism */}
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMyIvPjwvZz48L2c+PC9zdmc+')] opacity-30" />
       <motion.div 
         style={{ y, opacity }}
         className="absolute inset-0"
       >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(139,197,63,0.1)_0%,transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(255,183,77,0.1)_0%,transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(139,197,63,0.12)_0%,transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,rgba(255,183,77,0.12)_0%,transparent_70%)]" />
+        
+        {/* Floating Organic Shapes */}
         <motion.div
           animate={{ 
-            scale: [1, 1.3, 1],
-            rotate: [0, 360],
-            x: [0, 50, 0]
+            y: [0, -30, 0],
+            rotate: [0, 10, -10, 0],
+            scale: [1, 1.1, 1]
           }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-20 right-10 w-64 h-64 rounded-full bg-gradient-to-br from-forest-medium/10 to-transparent border border-forest-medium/20"
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-20 right-[15%] w-40 h-40 rounded-full bg-gradient-to-br from-forest-medium/15 to-transparent backdrop-blur-sm border border-forest-medium/25"
         />
         <motion.div
           animate={{ 
-            scale: [1.3, 1, 1.3],
-            rotate: [360, 0],
-            x: [0, -30, 0]
+            y: [0, 20, 0],
+            x: [0, -15, 0],
+            rotate: [0, -15, 15, 0],
+            scale: [1.1, 1, 1.1]
           }}
-          transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-20 left-10 w-48 h-48 rounded-full bg-gradient-to-br from-sunset/10 to-transparent border border-sunset/20"
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 3 }}
+          className="absolute bottom-24 left-[10%] w-32 h-32 rounded-full bg-gradient-to-br from-sunset/15 to-transparent backdrop-blur-sm border border-sunset/25"
         />
         <motion.div
           animate={{ 
-            y: [0, -50, 0],
+            scale: [1, 1.2, 1],
             rotate: [0, 180, 360]
           }}
-          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/2 left-1/4 w-32 h-32 rounded-full bg-gradient-to-br from-river/5 to-transparent"
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 rounded-full border border-river/20"
+        />
+        
+        {/* Subtle Particle Effects */}
+        <motion.div
+          animate={{ 
+            y: [0, -100, 0],
+            opacity: [0, 1, 0]
+          }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          className="absolute top-[30%] left-[25%] w-2 h-2 rounded-full bg-sunset/40"
+        />
+        <motion.div
+          animate={{ 
+            y: [0, -80, 0],
+            opacity: [0, 1, 0]
+          }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 4 }}
+          className="absolute top-[60%] right-[30%] w-1.5 h-1.5 rounded-full bg-forest-medium/40"
         />
       </motion.div>
 
@@ -228,17 +250,25 @@ const TestimonialsSection = () => {
                   }}
                   className="absolute inset-0 cursor-grab active:cursor-grabbing"
                 >
-                  <Card className="h-full bg-white/90 backdrop-blur-xl shadow-2xl relative overflow-hidden border-0 hover:shadow-3xl transition-all duration-500">
-                    <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/10 to-sunset/5" />
+                  <Card className="h-full bg-white/95 backdrop-blur-3xl shadow-2xl relative overflow-hidden border border-white/40 hover:shadow-3xl hover:bg-white/98 transition-all duration-700 hover:scale-[1.02]">
+                    <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/20 to-sunset/8" />
+                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-forest-medium via-sunset to-river opacity-60" />
                     <CardContent className="p-8 md:p-12 h-full flex flex-col justify-between relative z-10">
-                      {/* Quote Icon */}
+                      {/* Enhanced Quote Icon */}
                       <motion.div
                         initial={{ scale: 0, rotate: -45 }}
                         animate={{ scale: 1, rotate: 0 }}
                         transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
-                        className="absolute top-6 left-6 opacity-15"
+                        className="absolute top-6 left-6 opacity-10"
                       >
-                        <Quote className="w-20 h-20 text-forest-deep" />
+                        <div className="relative">
+                          <Quote className="w-24 h-24 text-forest-deep" />
+                          <motion.div
+                            animate={{ scale: [1, 1.2, 1] }}
+                            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                            className="absolute inset-0 bg-gradient-to-br from-sunset/20 to-transparent rounded-full blur-xl"
+                          />
+                        </div>
                       </motion.div>
 
                       <div>
@@ -290,13 +320,18 @@ const TestimonialsSection = () => {
                         className="flex items-center space-x-4 relative z-20"
                       >
                         <motion.div 
-                          className="w-16 h-16 rounded-2xl bg-gradient-to-br from-forest-deep to-forest-medium flex items-center justify-center shadow-lg"
-                          whileHover={{ scale: 1.1, rotate: 5 }}
+                          className="w-18 h-18 rounded-2xl bg-gradient-to-br from-forest-deep via-forest-medium to-forest-deep flex items-center justify-center shadow-xl border-2 border-white/30 backdrop-blur-sm"
+                          whileHover={{ scale: 1.15, rotate: 8 }}
                           transition={{ type: "spring", stiffness: 300 }}
                         >
-                          <span className="text-cream font-serif font-bold text-xl">
+                          <span className="text-cream font-serif font-bold text-2xl">
                             {testimonials[currentIndex].name.charAt(0)}
                           </span>
+                          <motion.div
+                            className="absolute inset-0 rounded-2xl border border-sunset/30"
+                            animate={{ scale: [1, 1.1, 1] }}
+                            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                          />
                         </motion.div>
                         
                         <div>
@@ -320,32 +355,42 @@ const TestimonialsSection = () => {
               </AnimatePresence>
             </div>
 
-            {/* Navigation Arrows */}
+            {/* Enhanced Navigation Arrows */}
             <motion.div
-              whileHover={{ scale: 1.1 }}
+              whileHover={{ scale: 1.1, x: -2 }}
               whileTap={{ scale: 0.9 }}
             >
               <Button
                 variant="outline"
                 size="icon"
                 onClick={prevTestimonial}
-                className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-xl border-forest-deep/20 hover:bg-forest-deep hover:text-cream shadow-2xl hover:shadow-forest-deep/25 transition-all duration-300 rounded-2xl"
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-14 h-14 bg-white/95 backdrop-blur-2xl border-2 border-forest-deep/25 hover:bg-forest-deep hover:text-cream shadow-2xl hover:shadow-forest-deep/30 transition-all duration-500 rounded-2xl group"
               >
-                <ChevronLeft className="w-5 h-5" />
+                <ChevronLeft className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" />
+                <motion.div
+                  className="absolute inset-0 rounded-2xl border border-sunset/20"
+                  animate={{ scale: [1, 1.05, 1] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                />
               </Button>
             </motion.div>
 
             <motion.div
-              whileHover={{ scale: 1.1 }}
+              whileHover={{ scale: 1.1, x: 2 }}
               whileTap={{ scale: 0.9 }}
             >
               <Button
                 variant="outline"
                 size="icon"
                 onClick={nextTestimonial}
-                className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-xl border-forest-deep/20 hover:bg-forest-deep hover:text-cream shadow-2xl hover:shadow-forest-deep/25 transition-all duration-300 rounded-2xl"
+                className="absolute right-4 top-1/2 -translate-y-1/2 w-14 h-14 bg-white/95 backdrop-blur-2xl border-2 border-forest-deep/25 hover:bg-forest-deep hover:text-cream shadow-2xl hover:shadow-forest-deep/30 transition-all duration-500 rounded-2xl group"
               >
-                <ChevronRight className="w-5 h-5" />
+                <ChevronRight className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" />
+                <motion.div
+                  className="absolute inset-0 rounded-2xl border border-sunset/20"
+                  animate={{ scale: [1, 1.05, 1] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                />
               </Button>
             </motion.div>
           </motion.div>
@@ -366,19 +411,26 @@ const TestimonialsSection = () => {
                 whileTap={{ scale: 0.9 }}
               >
                 <motion.div
-                  className={`w-3 h-3 rounded-full transition-all duration-500 ${
+                  className={`w-4 h-4 rounded-full transition-all duration-500 ${
                     index === currentIndex
-                      ? 'bg-gradient-to-r from-forest-deep to-forest-medium scale-125 shadow-lg'
-                      : 'bg-forest-deep/30 hover:bg-forest-deep/60 group-hover:scale-110'
+                      ? 'bg-gradient-to-r from-forest-deep via-sunset to-forest-medium scale-125 shadow-xl shadow-sunset/25'
+                      : 'bg-forest-deep/25 hover:bg-forest-deep/50 group-hover:scale-110 backdrop-blur-sm border border-white/20'
                   }`}
                   layoutId={index === currentIndex ? "active-dot" : undefined}
                 />
                 {index === currentIndex && (
                   <motion.div
-                    className="absolute inset-0 rounded-full border-2 border-forest-deep/40"
+                    className="absolute inset-0 rounded-full border-2 border-sunset/60"
                     initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1.5, opacity: 1 }}
-                    transition={{ duration: 0.3 }}
+                    animate={{ scale: 1.8, opacity: 1 }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
+                  />
+                )}
+                {index === currentIndex && (
+                  <motion.div
+                    className="absolute inset-0 rounded-full bg-sunset/10"
+                    animate={{ scale: [1, 1.5, 1] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                   />
                 )}
               </motion.button>

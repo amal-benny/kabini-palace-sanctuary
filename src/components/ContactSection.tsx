@@ -80,36 +80,41 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" ref={containerRef} className="py-24 bg-gradient-to-br from-forest-deep via-forest-medium to-forest-deep relative overflow-hidden">
-      {/* Enhanced Background Elements */}
+    <section id="contact" ref={containerRef} className="py-24 bg-gradient-to-br from-forest-deep/95 via-forest-medium/90 to-forest-deep/95 relative overflow-hidden">
+      {/* Nature-themed Background */}
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wMyI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iNCIvPjwvZz48L2c+PC9zdmc+')] opacity-40" />
       <motion.div 
         style={{ y, opacity }}
         className="absolute inset-0"
       >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(139,197,63,0.1)_0%,transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(139,197,63,0.15)_0%,transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(255,183,77,0.1)_0%,transparent_60%)]" />
+        
+        {/* Floating Nature Elements */}
         <motion.div
           animate={{ 
-            scale: [1, 1.2, 1],
+            y: [0, -20, 0],
+            rotate: [0, 5, -5, 0]
+          }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-20 left-[10%] w-24 h-24 rounded-full bg-gradient-to-br from-river/20 to-transparent backdrop-blur-sm border border-river/30"
+        />
+        <motion.div
+          animate={{ 
+            y: [0, 15, 0],
+            x: [0, 10, 0],
+            rotate: [0, -10, 10, 0]
+          }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          className="absolute bottom-32 right-[15%] w-32 h-32 rounded-full bg-gradient-to-br from-sunset/15 to-transparent backdrop-blur-sm border border-sunset/25"
+        />
+        <motion.div
+          animate={{ 
+            scale: [1, 1.1, 1],
             rotate: [0, 180, 360]
           }}
           transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute top-20 left-20 w-32 h-32 rounded-full border border-sunset/20"
-        />
-        <motion.div
-          animate={{ 
-            scale: [1.2, 1, 1.2],
-            rotate: [360, 180, 0]
-          }}
-          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          className="absolute bottom-20 right-20 w-24 h-24 rounded-full border border-cream/20"
-        />
-        <motion.div
-          animate={{ 
-            y: [0, -30, 0],
-            x: [0, 20, 0]
-          }}
-          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/2 left-1/2 w-16 h-16 rounded-full bg-gradient-to-r from-sunset/10 to-river/10"
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full border border-cream/20"
         />
       </motion.div>
 
@@ -151,7 +156,7 @@ const ContactSection = () => {
         </motion.div>
 
         <div className="grid lg:grid-cols-5 gap-12">
-          {/* Contact Information */}
+          {/* Contact Information - Enhanced Glassmorphism */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -174,21 +179,22 @@ const ContactSection = () => {
                   whileHover={{ scale: 1.02 }}
                   className="group"
                 >
-                  <Card className="bg-white/5 backdrop-blur-xl border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-500 group-hover:shadow-xl group-hover:shadow-sunset/10">
-                    <CardContent className="p-5">
+                  <Card className="bg-white/10 backdrop-blur-2xl border-white/20 hover:bg-white/15 hover:border-white/30 transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-sunset/20 hover:scale-[1.02]">
+                    <CardContent className="p-6">
                       <div className="flex items-center space-x-4">
                         <motion.div 
-                          className={`p-3 rounded-xl bg-gradient-to-br from-white/20 to-white/5 ${info.color} group-hover:scale-110 transition-transform duration-300`}
-                          whileHover={{ rotate: 5 }}
+                          className={`p-4 rounded-2xl bg-gradient-to-br from-white/30 to-white/10 ${info.color} group-hover:scale-110 transition-all duration-300 shadow-lg backdrop-blur-sm`}
+                          whileHover={{ rotate: 8, scale: 1.1 }}
+                          whileTap={{ scale: 0.95 }}
                         >
-                          <info.icon className="w-5 h-5" />
+                          <info.icon className="w-6 h-6" />
                         </motion.div>
                         <div className="flex-1">
-                          <h4 className="font-semibold text-cream mb-1 group-hover:text-sunset transition-colors duration-300">
+                          <h4 className="font-bold text-cream mb-2 group-hover:text-sunset transition-colors duration-300 text-lg">
                             {info.title}
                           </h4>
                           {info.details.map((detail, idx) => (
-                            <p key={idx} className="text-cream/70 text-sm leading-relaxed">
+                            <p key={idx} className="text-cream/80 text-sm leading-relaxed mb-1">
                               {detail}
                             </p>
                           ))}
@@ -208,47 +214,58 @@ const ContactSection = () => {
               className="space-y-6"
             >
               {/* Operating Hours */}
-              <Card className="bg-white/10 backdrop-blur-md border-white/20">
+              <Card className="bg-white/15 backdrop-blur-2xl border-white/25 hover:bg-white/20 transition-all duration-300 shadow-xl">
                 <CardContent className="p-6">
                   <div className="flex items-center space-x-3 mb-4">
-                    <Clock className="w-5 h-5 text-sunset" />
-                    <h4 className="text-lg font-semibold text-cream">Reception Hours</h4>
+                    <motion.div 
+                      className="p-2 rounded-lg bg-gradient-to-br from-sunset/20 to-sunset/10 backdrop-blur-sm"
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                    >
+                      <Clock className="w-5 h-5 text-sunset" />
+                    </motion.div>
+                    <h4 className="text-lg font-bold text-cream">Reception Hours</h4>
                   </div>
-                  <div className="space-y-2 text-cream/80 text-sm">
-                    <p>Check-in: 2:00 PM - 11:00 PM</p>
-                    <p>Check-out: 7:00 AM - 12:00 PM</p>
-                    <p>24/7 Emergency Assistance Available</p>
+                  <div className="space-y-2 text-cream/90 text-sm">
+                    <p className="flex justify-between"><span>Check-in:</span> <span className="text-sunset font-medium">2:00 PM - 11:00 PM</span></p>
+                    <p className="flex justify-between"><span>Check-out:</span> <span className="text-sunset font-medium">7:00 AM - 12:00 PM</span></p>
+                    <p className="text-cream/70 text-xs mt-3 italic">24/7 Emergency Assistance Available</p>
                   </div>
                 </CardContent>
               </Card>
 
               {/* How to Reach */}
-              <Card className="bg-white/10 backdrop-blur-md border-white/20">
+              <Card className="bg-white/15 backdrop-blur-2xl border-white/25 hover:bg-white/20 transition-all duration-300 shadow-xl">
                 <CardContent className="p-6">
-                  <h4 className="text-lg font-semibold text-cream mb-4">How to Reach</h4>
-                  <div className="space-y-3">
-                    <div className="flex items-center space-x-3">
-                      <Car className="w-4 h-4 text-sunset" />
-                      <span className="text-cream/80 text-sm">120 km from Bangalore (2.5 hours drive)</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <Plane className="w-4 h-4 text-sunset" />
-                      <span className="text-cream/80 text-sm">Nearest Airport: Mysore (60 km)</span>
-                    </div>
+                  <h4 className="text-lg font-bold text-cream mb-4">How to Reach</h4>
+                  <div className="space-y-4">
+                    <motion.div 
+                      className="flex items-center space-x-3 p-3 rounded-lg bg-white/10 backdrop-blur-sm"
+                      whileHover={{ scale: 1.02, x: 5 }}
+                    >
+                      <Car className="w-5 h-5 text-sunset" />
+                      <span className="text-cream/90 text-sm">120 km from Bangalore (2.5 hours)</span>
+                    </motion.div>
+                    <motion.div 
+                      className="flex items-center space-x-3 p-3 rounded-lg bg-white/10 backdrop-blur-sm"
+                      whileHover={{ scale: 1.02, x: 5 }}
+                    >
+                      <Plane className="w-5 h-5 text-sunset" />
+                      <span className="text-cream/90 text-sm">Nearest Airport: Mysore (60 km)</span>
+                    </motion.div>
                   </div>
                 </CardContent>
               </Card>
             </motion.div>
           </motion.div>
 
-          {/* Contact Form */}
+          {/* Enhanced Contact Form with Map */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.7, type: "spring", stiffness: 80 }}
             className="lg:col-span-3"
           >
-            <Card className="bg-white/5 backdrop-blur-2xl border-white/10 hover:bg-white/10 transition-all duration-500 shadow-2xl">
+            <Card className="bg-white/10 backdrop-blur-3xl border-white/20 hover:bg-white/15 transition-all duration-500 shadow-2xl hover:shadow-3xl hover:shadow-sunset/10">
               <CardContent className="p-8">
                 <div className="flex items-center space-x-3 mb-8">
                   <motion.div
@@ -263,111 +280,179 @@ const ContactSection = () => {
                 </div>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="text-cream text-sm font-medium mb-2 block">
-                        First Name *
-                      </label>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.8 }}
+                  >
+                    <label className="text-cream text-sm font-semibold mb-3 block">
+                      First Name *
+                    </label>
+                    <motion.div whileFocus={{ scale: 1.02 }}>
                       <Input
                         placeholder="Your first name"
                         required
-                        className="bg-white/20 border-white/30 text-cream placeholder:text-cream/60"
+                        className="bg-white/25 backdrop-blur-sm border-white/40 text-cream placeholder:text-cream/70 focus:bg-white/30 focus:border-sunset/50 focus:ring-2 focus:ring-sunset/25 transition-all duration-300 h-12 rounded-xl"
                       />
-                    </div>
-                    <div>
-                      <label className="text-cream text-sm font-medium mb-2 block">
-                        Last Name *
-                      </label>
+                    </motion.div>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.9 }}
+                  >
+                    <label className="text-cream text-sm font-semibold mb-3 block">
+                      Last Name *
+                    </label>
+                    <motion.div whileFocus={{ scale: 1.02 }}>
                       <Input
                         placeholder="Your last name"
                         required
-                        className="bg-white/20 border-white/30 text-cream placeholder:text-cream/60"
+                        className="bg-white/25 backdrop-blur-sm border-white/40 text-cream placeholder:text-cream/70 focus:bg-white/30 focus:border-sunset/50 focus:ring-2 focus:ring-sunset/25 transition-all duration-300 h-12 rounded-xl"
                       />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="text-cream text-sm font-medium mb-2 block">
-                      Email *
-                    </label>
-                    <Input
-                      type="email"
-                      placeholder="your.email@example.com"
-                      required
-                      className="bg-white/20 border-white/30 text-cream placeholder:text-cream/60"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="text-cream text-sm font-medium mb-2 block">
-                      Phone Number
-                    </label>
-                    <Input
-                      type="tel"
-                      placeholder="+91 98765 43210"
-                      className="bg-white/20 border-white/30 text-cream placeholder:text-cream/60"
-                    />
-                  </div>
-
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="text-cream text-sm font-medium mb-2 block">
-                        Check-in Date
-                      </label>
-                      <Input
-                        type="date"
-                        className="bg-white/20 border-white/30 text-cream"
-                      />
-                    </div>
-                    <div>
-                      <label className="text-cream text-sm font-medium mb-2 block">
-                        Check-out Date
-                      </label>
-                      <Input
-                        type="date"
-                        className="bg-white/20 border-white/30 text-cream"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="text-cream text-sm font-medium mb-2 block">
-                      Message *
-                    </label>
-                    <Textarea
-                      placeholder="Tell us about your requirements, number of guests, special requests..."
-                      rows={5}
-                      required
-                      className="bg-white/20 border-white/30 text-cream placeholder:text-cream/60 resize-none"
-                    />
+                    </motion.div>
+                  </motion.div>
                   </div>
 
                   <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 1.0 }}
+                  >
+                    <label className="text-cream text-sm font-semibold mb-3 block">
+                      Email *
+                    </label>
+                    <motion.div whileFocus={{ scale: 1.02 }}>
+                      <Input
+                        type="email"
+                        placeholder="your.email@example.com"
+                        required
+                        className="bg-white/25 backdrop-blur-sm border-white/40 text-cream placeholder:text-cream/70 focus:bg-white/30 focus:border-sunset/50 focus:ring-2 focus:ring-sunset/25 transition-all duration-300 h-12 rounded-xl"
+                      />
+                    </motion.div>
+                  </motion.div>
+
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 1.1 }}
+                    >
+                      <label className="text-cream text-sm font-semibold mb-3 block">
+                        Phone Number
+                      </label>
+                      <motion.div whileFocus={{ scale: 1.02 }}>
+                        <Input
+                          type="tel"
+                          placeholder="+91 98765 43210"
+                          className="bg-white/25 backdrop-blur-sm border-white/40 text-cream placeholder:text-cream/70 focus:bg-white/30 focus:border-sunset/50 focus:ring-2 focus:ring-sunset/25 transition-all duration-300 h-12 rounded-xl"
+                        />
+                      </motion.div>
+                    </motion.div>
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 1.2 }}
+                    >
+                      <label className="text-cream text-sm font-semibold mb-3 block">
+                        Room Inquiry
+                      </label>
+                      <motion.div whileFocus={{ scale: 1.02 }}>
+                        <select className="w-full bg-white/25 backdrop-blur-sm border border-white/40 text-cream rounded-xl h-12 px-4 focus:bg-white/30 focus:border-sunset/50 focus:ring-2 focus:ring-sunset/25 transition-all duration-300">
+                          <option value="general" className="bg-forest-deep text-cream">General Inquiry</option>
+                          <option value="booking" className="bg-forest-deep text-cream">Room Booking</option>
+                          <option value="kings-grove" className="bg-forest-deep text-cream">The King's Grove</option>
+                          <option value="empress-suite" className="bg-forest-deep text-cream">The Empress Suite</option>
+                          <option value="regal-crest" className="bg-forest-deep text-cream">Regal Crest</option>
+                        </select>
+                      </motion.div>
+                    </motion.div>
+                  </div>
+
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 1.3 }}
+                    >
+                      <label className="text-cream text-sm font-semibold mb-3 block">
+                        Check-in Date
+                      </label>
+                      <motion.div whileFocus={{ scale: 1.02 }}>
+                        <Input
+                          type="date"
+                          className="bg-white/25 backdrop-blur-sm border-white/40 text-cream focus:bg-white/30 focus:border-sunset/50 focus:ring-2 focus:ring-sunset/25 transition-all duration-300 h-12 rounded-xl"
+                        />
+                      </motion.div>
+                    </motion.div>
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 1.4 }}
+                    >
+                      <label className="text-cream text-sm font-semibold mb-3 block">
+                        Check-out Date
+                      </label>
+                      <motion.div whileFocus={{ scale: 1.02 }}>
+                        <Input
+                          type="date"
+                          className="bg-white/25 backdrop-blur-sm border-white/40 text-cream focus:bg-white/30 focus:border-sunset/50 focus:ring-2 focus:ring-sunset/25 transition-all duration-300 h-12 rounded-xl"
+                        />
+                      </motion.div>
+                    </motion.div>
+                  </div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 1.5 }}
+                  >
+                    <label className="text-cream text-sm font-semibold mb-3 block">
+                      Message *
+                    </label>
+                    <motion.div whileFocus={{ scale: 1.02 }}>
+                      <Textarea
+                        placeholder="Tell us about your requirements, number of guests, special requests..."
+                        rows={5}
+                        required
+                        className="bg-white/25 backdrop-blur-sm border-white/40 text-cream placeholder:text-cream/70 resize-none focus:bg-white/30 focus:border-sunset/50 focus:ring-2 focus:ring-sunset/25 transition-all duration-300 rounded-xl"
+                      />
+                    </motion.div>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 1.6 }}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
                     <Button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full bg-gradient-to-r from-sunset to-sunset/90 text-forest-deep hover:from-sunset/90 hover:to-sunset font-semibold py-6 text-lg shadow-lg hover:shadow-sunset/25 transition-all duration-300"
+                      className="w-full bg-gradient-to-r from-sunset via-sunset/95 to-sunset/90 text-forest-deep hover:from-sunset/95 hover:to-sunset/85 font-bold py-6 text-lg shadow-2xl hover:shadow-sunset/30 transition-all duration-500 rounded-xl relative overflow-hidden group"
                     >
+                      <motion.div 
+                        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"
+                      />
                       {isSubmitting ? (
                         <motion.div
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
-                          className="flex items-center"
+                          className="flex items-center relative z-10"
                         >
                           <motion.div
                             animate={{ rotate: 360 }}
                             transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                            className="w-5 h-5 border-2 border-forest-deep border-t-transparent rounded-full mr-2"
+                            className="w-6 h-6 border-3 border-forest-deep border-t-transparent rounded-full mr-3"
                           />
-                          Sending...
+                          Sending Message...
                         </motion.div>
                       ) : (
-                        <>
-                          <Send className="w-5 h-5 mr-2" />
+                        <div className="flex items-center relative z-10">
+                          <Send className="w-6 h-6 mr-3" />
                           Send Message
-                        </>
+                        </div>
                       )}
                     </Button>
                   </motion.div>
