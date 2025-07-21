@@ -42,14 +42,14 @@ const HeroSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
+          transition={{ duration: 1.2, delay: 1.2, ease: [0.23, 1, 0.32, 1] }}
           className="space-y-6"
         >
           {/* Subtitle */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
+            transition={{ duration: 0.8, delay: 1.5 }}
             className="text-lg md:text-xl text-cream/90 font-medium tracking-wide"
           >
             Welcome to
@@ -59,7 +59,7 @@ const HeroSection = () => {
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 1 }}
+            transition={{ duration: 1.2, delay: 1.8 }}
             className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-cream text-shadow leading-tight"
           >
             J&L Kabini Palace
@@ -69,7 +69,7 @@ const HeroSection = () => {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.3 }}
+            transition={{ duration: 0.8, delay: 2.2 }}
             className="text-xl md:text-2xl text-sunset font-medium tracking-wide"
           >
             Experience Rustic Royalty by the Wild
@@ -79,7 +79,7 @@ const HeroSection = () => {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.6 }}
+            transition={{ duration: 0.8, delay: 2.6 }}
             className="text-lg text-cream/80 max-w-2xl mx-auto leading-relaxed"
           >
             Immerse yourself in luxury amidst the pristine Kabini forest. 
@@ -90,7 +90,7 @@ const HeroSection = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.9 }}
+            transition={{ duration: 0.8, delay: 3.0 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8"
           >
             <Button
@@ -113,7 +113,7 @@ const HeroSection = () => {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 2.5 }}
+            transition={{ delay: 3.5 }}
             className="pt-16"
           >
             <motion.div
