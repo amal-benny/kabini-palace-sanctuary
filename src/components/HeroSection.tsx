@@ -9,9 +9,9 @@ const HeroSection = () => {
       {/* Background Image with Parallax */}
       <div className="absolute inset-0">
         <motion.div
-          initial={{ scale: 1.1 }}
+          initial={{ scale: 1.05 }}
           animate={{ scale: 1 }}
-          transition={{ duration: 2, ease: "easeOut" }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
           className="absolute inset-0"
         >
           <img
@@ -27,29 +27,29 @@ const HeroSection = () => {
 
       {/* Floating Elements */}
       <motion.div
-        animate={{ y: [0, -10, 0] }}
-        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        animate={{ y: [0, -8, 0] }}
+        transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
         className="absolute top-1/4 left-1/4 w-2 h-2 bg-sunset rounded-full opacity-60"
       />
       <motion.div
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        animate={{ y: [0, 8, 0] }}
+        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
         className="absolute top-1/3 right-1/3 w-3 h-3 bg-cream rounded-full opacity-40"
       />
 
       {/* Main Content */}
       <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 1.2, ease: [0.23, 1, 0.32, 1] }}
+          transition={{ duration: 0.8, delay: 0.3, ease: [0.23, 1, 0.32, 1] }}
           className="space-y-6"
         >
           {/* Subtitle */}
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.5 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
             className="text-lg md:text-xl text-cream/90 font-medium tracking-wide"
           >
             Welcome to
@@ -57,9 +57,9 @@ const HeroSection = () => {
 
           {/* Main Title */}
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 1.8 }}
+            transition={{ duration: 0.8, delay: 0.7 }}
             className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-cream text-shadow leading-tight"
           >
             J&L Kabini Palace
@@ -67,9 +67,9 @@ const HeroSection = () => {
 
           {/* Tagline */}
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 2.2 }}
+            transition={{ duration: 0.6, delay: 0.9 }}
             className="text-xl md:text-2xl text-sunset font-medium tracking-wide"
           >
             Experience Rustic Royalty by the Wild
@@ -77,9 +77,9 @@ const HeroSection = () => {
 
           {/* Description */}
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 2.6 }}
+            transition={{ duration: 0.6, delay: 1.1 }}
             className="text-lg text-cream/80 max-w-2xl mx-auto leading-relaxed"
           >
             Immerse yourself in luxury amidst the pristine Kabini forest. 
@@ -88,9 +88,9 @@ const HeroSection = () => {
 
           {/* Call to Action Buttons */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 3.0 }}
+            transition={{ duration: 0.6, delay: 1.3 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8"
           >
             <Button
@@ -113,12 +113,12 @@ const HeroSection = () => {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 3.5 }}
+            transition={{ delay: 1.6 }}
             className="pt-16"
           >
             <motion.div
-              animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
               className="flex flex-col items-center text-cream/60"
             >
               <p className="text-sm mb-2">Discover More</p>
@@ -132,13 +132,13 @@ const HeroSection = () => {
       <motion.div
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 0.1, scale: 1 }}
-        transition={{ duration: 2, delay: 1 }}
+        transition={{ duration: 1, delay: 0.8 }}
         className="absolute bottom-10 left-10 w-32 h-32 rounded-full border border-cream/20"
       />
       <motion.div
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 0.1, scale: 1 }}
-        transition={{ duration: 2, delay: 1.5 }}
+        transition={{ duration: 1, delay: 1.0 }}
         className="absolute top-20 right-10 w-24 h-24 rounded-full border border-sunset/20"
       />
     </section>

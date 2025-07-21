@@ -40,9 +40,9 @@ const Navigation = () => {
         opacity: isVisible ? 1 : 0 
       }}
       transition={{ 
-        duration: 0.8, 
+        duration: 0.6, 
         ease: [0.23, 1, 0.32, 1],
-        delay: isVisible ? 0.2 : 0
+        delay: isVisible ? 0.1 : 0
       }}
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ease-out ${
         isScrolled 

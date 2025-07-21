@@ -10,21 +10,21 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({ onLoadingComplete }
   const [loadingProgress, setLoadingProgress] = useState(0);
 
   useEffect(() => {
-    // Simulate loading progress
+    // Faster loading progress
     const timer = setInterval(() => {
       setLoadingProgress(prev => {
         if (prev >= 100) {
           clearInterval(timer);
-          // Wait a moment then start fade out
+          // Quick fade out
           setTimeout(() => {
             setIsVisible(false);
-            setTimeout(onLoadingComplete, 800); // Wait for fade out animation
-          }, 300);
+            setTimeout(onLoadingComplete, 400); // Reduced wait time
+          }, 100);
           return 100;
         }
-        return prev + Math.random() * 15 + 5; // Random but steady progress
+        return prev + Math.random() * 25 + 15; // Faster progress
       });
-    }, 150);
+    }, 80); // Faster intervals
 
     return () => clearInterval(timer);
   }, [onLoadingComplete]);
@@ -36,8 +36,8 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({ onLoadingComplete }
           initial={{ opacity: 1 }}
           exit={{ 
             opacity: 0,
-            scale: 1.1,
-            transition: { duration: 0.8, ease: "easeInOut" }
+            scale: 1.05,
+            transition: { duration: 0.4, ease: "easeOut" }
           }}
           className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-background via-forest-light/20 to-earth-light/30"
         >
@@ -49,7 +49,7 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({ onLoadingComplete }
                 animate={{ 
                   pathLength: 1, 
                   opacity: 0.3,
-                  transition: { duration: 3, ease: "easeInOut" }
+                  transition: { duration: 1.5, ease: "easeOut" }
                 }}
                 d="M0,600 Q200,500 400,550 T800,520 T1200,580 L1200,800 L0,800 Z"
                 fill="hsl(var(--forest-deep))"
@@ -59,7 +59,7 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({ onLoadingComplete }
                 animate={{ 
                   pathLength: 1, 
                   opacity: 0.2,
-                  transition: { duration: 3, delay: 0.5, ease: "easeInOut" }
+                  transition: { duration: 1.5, delay: 0.2, ease: "easeOut" }
                 }}
                 d="M0,650 Q300,580 600,600 T1200,620 L1200,800 L0,800 Z"
                 fill="hsl(var(--forest-medium))"
@@ -74,10 +74,10 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({ onLoadingComplete }
               {/* Water Ripple Effect */}
               <motion.div
                 animate={{
-                  scale: [1, 1.5, 2],
+                  scale: [1, 1.3, 1.8],
                   opacity: [0.6, 0.3, 0],
                   transition: {
-                    duration: 2,
+                    duration: 1.2,
                     repeat: Infinity,
                     ease: "easeOut"
                   }
@@ -87,13 +87,13 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({ onLoadingComplete }
               />
               <motion.div
                 animate={{
-                  scale: [1, 1.5, 2],
+                  scale: [1, 1.3, 1.8],
                   opacity: [0.6, 0.3, 0],
                   transition: {
-                    duration: 2,
+                    duration: 1.2,
                     repeat: Infinity,
                     ease: "easeOut",
-                    delay: 0.5
+                    delay: 0.3
                   }
                 }}
                 className="absolute inset-0 rounded-full border border-forest-light/40"
@@ -114,7 +114,7 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({ onLoadingComplete }
                   rotate: [-10, 5, 0],
                   opacity: [0, 1, 1],
                   transition: {
-                    duration: 2,
+                    duration: 1.5,
                     repeat: Infinity,
                     repeatType: "reverse",
                     ease: "easeInOut"
@@ -128,7 +128,7 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({ onLoadingComplete }
                     fill="hsl(var(--forest-medium))"
                     animate={{ 
                       fill: ["hsl(var(--forest-deep))", "hsl(var(--forest-medium))", "hsl(var(--forest-light))"],
-                      transition: { duration: 2, repeat: Infinity, repeatType: "reverse" }
+                      transition: { duration: 1.5, repeat: Infinity, repeatType: "reverse" }
                     }}
                   />
                   <motion.path
@@ -139,7 +139,7 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({ onLoadingComplete }
                     initial={{ pathLength: 0 }}
                     animate={{ 
                       pathLength: 1,
-                      transition: { duration: 1.5, delay: 1 }
+                      transition: { duration: 0.8, delay: 0.5 }
                     }}
                   />
                   <motion.path
@@ -151,7 +151,7 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({ onLoadingComplete }
                     initial={{ pathLength: 0 }}
                     animate={{ 
                       pathLength: 1,
-                      transition: { duration: 1, delay: 1.5 }
+                      transition: { duration: 0.6, delay: 0.8 }
                     }}
                   />
                 </svg>
@@ -165,8 +165,8 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({ onLoadingComplete }
                 opacity: 1, 
                 y: 0,
                 transition: {
-                  duration: 1,
-                  delay: 0.5
+                  duration: 0.6,
+                  delay: 0.2
                 }
               }}
               className="mb-6"
@@ -178,7 +178,7 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({ onLoadingComplete }
                 animate={{ 
                   opacity: [0, 1, 1, 0],
                   transition: { 
-                    duration: 3, 
+                    duration: 2, 
                     repeat: Infinity,
                     times: [0, 0.3, 0.7, 1]
                   }
@@ -198,7 +198,7 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({ onLoadingComplete }
                   initial={{ width: 0 }}
                   animate={{ 
                     width: `${Math.min(loadingProgress, 100)}%`,
-                    transition: { duration: 0.3, ease: "easeOut" }
+                    transition: { duration: 0.15, ease: "easeOut" }
                   }}
                 />
                 
@@ -208,7 +208,7 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({ onLoadingComplete }
                   animate={{
                     x: [-32, 256],
                     transition: {
-                      duration: 2,
+                      duration: 1.2,
                       repeat: Infinity,
                       ease: "easeInOut"
                     }
@@ -220,7 +220,7 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({ onLoadingComplete }
                 className="text-sm text-muted-foreground mt-3 font-medium"
                 animate={{
                   opacity: [0.7, 1, 0.7],
-                  transition: { duration: 2, repeat: Infinity }
+                  transition: { duration: 1.5, repeat: Infinity }
                 }}
               >
                 {Math.round(loadingProgress)}% Complete
@@ -241,9 +241,9 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({ onLoadingComplete }
                   opacity: [0.3, 0.8, 0.3],
                   scale: [0.8, 1.2, 0.8],
                   transition: {
-                    duration: 3 + i * 0.5,
+                    duration: 2 + i * 0.3,
                     repeat: Infinity,
-                    delay: i * 0.3,
+                    delay: i * 0.2,
                     ease: "easeInOut"
                   }
                 }}
