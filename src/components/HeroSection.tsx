@@ -1,18 +1,49 @@
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { Button } from './ui/button';
 import { ChevronDown, Calendar } from 'lucide-react';
 import heroImage from '@/assets/hero-forest.jpg';
+import { useEffect, useRef } from 'react';
 
 const HeroSection = () => {
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Mouse parallax effects
+  const backgroundX = useTransform(mouseX, [-window.innerWidth/2, window.innerWidth/2], [-15, 15]);
+  const backgroundY = useTransform(mouseY, [-window.innerHeight/2, window.innerHeight/2], [-10, 10]);
+  const textX = useTransform(mouseX, [-window.innerWidth/2, window.innerWidth/2], [-8, 8]);
+  const textY = useTransform(mouseY, [-window.innerHeight/2, window.innerHeight/2], [-5, 5]);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        mouseX.set(e.clientX - centerX);
+        mouseY.set(e.clientY - centerY);
+      }
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, [mouseX, mouseY]);
+
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section ref={containerRef} id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Parallax */}
       <div className="absolute inset-0">
         <motion.div
-          initial={{ scale: 1.05 }}
-          animate={{ scale: 1 }}
+          initial={{ scale: 1.05, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
-          className="absolute inset-0"
+          style={{ 
+            x: backgroundX, 
+            y: backgroundY,
+            scale: 1.1 // Slight scale for parallax movement room
+          }}
+          className="absolute inset-0 will-change-transform"
         >
           <img
             src={heroImage}
@@ -38,7 +69,10 @@ const HeroSection = () => {
       />
 
       {/* Main Content */}
-      <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
+      <motion.div 
+        className="relative z-10 text-center px-6 max-w-4xl mx-auto"
+        style={{ x: textX, y: textY }}
+      >
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -126,7 +160,7 @@ const HeroSection = () => {
             </motion.div>
           </motion.div>
         </motion.div>
-      </div>
+      </motion.div>
 
       {/* Decorative Elements */}
       <motion.div

@@ -210,4 +210,42 @@
   .text-shadow {
     text-shadow: 0 2px 8px hsl(var(--forest-deep) / 0.5);
   }
+
+  /* Custom Scrollbar - Desktop focused */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--forest-medium) / 0.6);
+    border-radius: 3px;
+    transition: all 0.2s ease;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--forest-medium) / 0.8);
+    box-shadow: 0 0 8px hsl(var(--forest-light) / 0.3);
+  }
+
+  /* Firefox scrollbar */
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--forest-medium) / 0.6) hsl(var(--background));
+  }
+
+  /* Smooth scrolling enhancement */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
 }

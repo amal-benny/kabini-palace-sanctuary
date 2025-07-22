@@ -10,21 +10,21 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({ onLoadingComplete }
   const [loadingProgress, setLoadingProgress] = useState(0);
 
   useEffect(() => {
-    // Faster loading progress
+    // Extended elegant loading (2.5-3 seconds)
     const timer = setInterval(() => {
       setLoadingProgress(prev => {
         if (prev >= 100) {
           clearInterval(timer);
-          // Quick fade out
+          // Elegant fade out
           setTimeout(() => {
             setIsVisible(false);
-            setTimeout(onLoadingComplete, 400); // Reduced wait time
-          }, 100);
+            setTimeout(onLoadingComplete, 600); // Graceful transition
+          }, 300);
           return 100;
         }
-        return prev + Math.random() * 25 + 15; // Faster progress
+        return prev + Math.random() * 8 + 4; // Smoother, more elegant progress
       });
-    }, 80); // Faster intervals
+    }, 120); // Slower, more luxurious intervals
 
     return () => clearInterval(timer);
   }, [onLoadingComplete]);
@@ -36,8 +36,9 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({ onLoadingComplete }
           initial={{ opacity: 1 }}
           exit={{ 
             opacity: 0,
-            scale: 1.05,
-            transition: { duration: 0.4, ease: "easeOut" }
+            scale: 0.95,
+            y: -20,
+            transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] }
           }}
           className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-background via-forest-light/20 to-earth-light/30"
         >
