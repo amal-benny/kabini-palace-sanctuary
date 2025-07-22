@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoadingAnimation from "./components/LoadingAnimation";
+import CursorEffects from "./components/CursorEffects";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
@@ -20,6 +21,7 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
+        <CursorEffects />
         <Toaster />
         <Sonner />
         {isLoading && <LoadingAnimation onLoadingComplete={handleLoadingComplete} />}

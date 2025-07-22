@@ -147,6 +147,13 @@
   body {
     @apply bg-background text-foreground font-serif;
     scroll-behavior: smooth;
+    cursor: none;
+  }
+
+  @media (max-width: 768px) {
+    body {
+      cursor: auto;
+    }
   }
 
   html {
@@ -246,6 +253,26 @@
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
+    }
+    
+    body {
+      cursor: auto;
+    }
+  }
+
+  /* Cursor interaction classes */
+  .cursor-luxury {
+    cursor: none;
+  }
+
+  .cursor-text {
+    cursor: none;
+  }
+
+  @media (max-width: 768px) {
+    .cursor-luxury,
+    .cursor-text {
+      cursor: auto;
     }
   }
 }
