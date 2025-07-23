@@ -5,6 +5,8 @@ import { Waves, TreePine, Truck, UtensilsCrossed, Building } from 'lucide-react'
 import naturalPondImage from '@/assets/natural-pond.jpg';
 import forestTrekkingImage from '@/assets/forest-trekking.jpg';
 import jeepSafariImage from '@/assets/jeep-safari.jpg';
+import luxuryRestaurantImage from '@/assets/luxury-restaurant.jpg';
+import luxuryFunctionHallImage from '@/assets/luxury-function-hall.jpg';
 
 const FacilitiesSection = () => {
   const ref = useRef(null);
@@ -36,14 +38,14 @@ const FacilitiesSection = () => {
       icon: UtensilsCrossed,
       title: "Restaurant",
       description: "Savor authentic local cuisine and international delicacies prepared with fresh, organic ingredients.",
-      image: naturalPondImage, // Placeholder - you can generate restaurant image
+      image: luxuryRestaurantImage,
       color: "text-sunset"
     },
     {
       icon: Building,
       title: "Function Hall",
       description: "Host memorable events in our elegant function hall with stunning forest views and premium amenities.",
-      image: forestTrekkingImage, // Placeholder - you can generate function hall image
+      image: luxuryFunctionHallImage,
       color: "text-forest-deep"
     }
   ];

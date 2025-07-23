@@ -8,6 +8,7 @@ import naturalPondImage from '@/assets/natural-pond.jpg';
 import forestTrekkingImage from '@/assets/forest-trekking.jpg';
 import jeepSafariImage from '@/assets/jeep-safari.jpg';
 import luxuryRoomImage from '@/assets/luxury-room.jpg';
+import luxuryRestaurantImage from '@/assets/luxury-restaurant.jpg';
 
 const GallerySection = () => {
   const ref = useRef(null);
@@ -52,7 +53,7 @@ const GallerySection = () => {
       className: "md:col-span-2"
     },
     {
-      src: naturalPondImage,
+      src: luxuryRestaurantImage,
       alt: "Dining Experience",
       category: "Dining",
       className: ""
