@@ -46,46 +46,59 @@ const CursorEffects = () => {
 
   const variants = {
     default: {
-      x: mousePosition.x - 16,
-      y: mousePosition.y - 16,
-      scale: 1,
-      backgroundColor: 'rgba(255, 255, 255, 0.8)',
-      mixBlendMode: 'difference' as const,
-    },
-    luxury: {
-      x: mousePosition.x - 24,
-      y: mousePosition.y - 24,
-      scale: 1.5,
-      backgroundColor: 'rgba(219, 174, 105, 0.6)', // sunset color
-      mixBlendMode: 'normal' as const,
-    },
-    text: {
-      x: mousePosition.x - 12,
-      y: mousePosition.y - 24,
-      scale: 0.8,
-      backgroundColor: 'rgba(255, 255, 255, 0.9)',
-      mixBlendMode: 'difference' as const,
-    },
-    pointer: {
       x: mousePosition.x - 20,
       y: mousePosition.y - 20,
-      scale: 1.2,
-      backgroundColor: 'rgba(255, 255, 255, 0.7)',
-      mixBlendMode: 'difference' as const,
+      scale: 1,
+      backgroundColor: 'hsl(140, 45%, 25%)', // forest-deep
+      mixBlendMode: 'normal' as const,
+      border: '2px solid hsl(45, 90%, 65%)', // sunset accent
+      boxShadow: '0 0 8px hsl(140, 45%, 25% / 0.3)',
+    },
+    luxury: {
+      x: mousePosition.x - 28,
+      y: mousePosition.y - 28,
+      scale: 1.4,
+      backgroundColor: 'hsl(45, 90%, 65%)', // sunset
+      mixBlendMode: 'normal' as const,
+      border: '3px solid hsl(25, 30%, 55%)', // earth-medium
+      boxShadow: '0 0 20px hsl(45, 90%, 65% / 0.4)',
+    },
+    text: {
+      x: mousePosition.x - 16,
+      y: mousePosition.y - 20,
+      scale: 0.9,
+      backgroundColor: 'hsl(25, 30%, 55%)', // earth-medium
+      mixBlendMode: 'normal' as const,
+      border: '2px solid hsl(140, 25%, 65%)', // forest-light
+      boxShadow: '0 0 10px hsl(25, 30%, 55% / 0.2)',
+    },
+    pointer: {
+      x: mousePosition.x - 24,
+      y: mousePosition.y - 24,
+      scale: 1.3,
+      backgroundColor: 'hsl(140, 25%, 65%)', // forest-light
+      mixBlendMode: 'normal' as const,
+      border: '2px solid hsl(45, 90%, 65%)', // sunset
+      boxShadow: '0 0 15px hsl(140, 25%, 65% / 0.3)',
     }
   };
 
   return (
     <>
       <motion.div
-        className="fixed top-0 left-0 w-8 h-8 rounded-full pointer-events-none z-50 hidden md:block"
+        className="fixed top-0 left-0 w-10 h-10 rounded-full pointer-events-none z-50 hidden md:block"
         variants={variants}
         animate={cursorVariant}
         transition={{
           type: "spring",
-          stiffness: 500,
-          damping: 28,
-          mass: 0.5
+          stiffness: 400,
+          damping: 25,
+          mass: 0.3
+        }}
+        style={{
+          background: variants[cursorVariant as keyof typeof variants].backgroundColor,
+          border: variants[cursorVariant as keyof typeof variants].border,
+          boxShadow: variants[cursorVariant as keyof typeof variants].boxShadow
         }}
       />
       
@@ -109,9 +122,9 @@ const CursorEffects = () => {
             }}
             style={{
               backgroundColor: cursorVariant === 'luxury' 
-                ? 'rgba(219, 174, 105, 0.2)' 
-                : 'rgba(255, 255, 255, 0.2)',
-              border: '1px solid rgba(255, 255, 255, 0.3)'
+                ? 'hsl(45, 90%, 65% / 0.15)' 
+                : 'hsl(140, 45%, 25% / 0.1)',
+              border: '1px solid hsl(35, 40%, 95% / 0.2)'
             }}
           />
         )}
