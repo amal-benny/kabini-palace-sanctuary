@@ -119,6 +119,7 @@ const GallerySection = () => {
               transition={{ duration: 0.6, delay: 0.1 + index * 0.1 }}
               className={`group relative overflow-hidden rounded-2xl cursor-pointer ${image.className}`}
               onClick={() => setSelectedImage(image.src)}
+              data-cursor="view"
             >
               {/* Image */}
               <motion.img
